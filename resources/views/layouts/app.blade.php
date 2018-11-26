@@ -70,7 +70,7 @@
         <main class="py-4">
             @if(Session::has('flash_message'))
                 <article class="alert alert-success">
-                    {{Session:get('flash_message')}}
+                    {{Session::get('flash_message')}}
                 </article>
             @endif
             @yield('content')
