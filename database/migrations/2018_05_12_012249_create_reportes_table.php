@@ -19,7 +19,7 @@ class CreateReportesTable extends Migration
             $table->string('tipo');
             $table->integer('itera');
             $table->float('rate_learning');
-            $table->string('rede_id')->unsigned()->nullable();
+            $table->integer('rede_id')->unsigned()->nullable();
             $table->foreign('rede_id')->references('id')->on('redes');
             $table->timestamps();
         });
