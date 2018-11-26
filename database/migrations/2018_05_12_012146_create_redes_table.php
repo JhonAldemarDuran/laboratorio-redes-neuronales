@@ -20,7 +20,7 @@ class CreateRedesTable extends Migration
             $table->float('rate_learning')->nullable();
             $table->integer('itera')->nullable();
             $table->integer('numero_capas')->nullable();
-            $table->integer('id')->unsigned()->nullable();
+            $table->integer('planta_id')->unsigned()->nullable();
             $table->foreign('planta_id')->references('id')->on('plantas');
             $table->timestamps();
         });
