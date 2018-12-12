@@ -27,4 +27,6 @@ class ReporteController extends Controller
             return redirect()->back();
         }
     }
+
+   
 }

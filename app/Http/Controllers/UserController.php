@@ -23,7 +23,7 @@ class UserController extends Controller
         $input = $request->all();
         User::create($input);
         Session::flash('flash_message', 'Usuario exitosamente agregado!');
-        return redirect('/home');
+        return redirect('/users');
     }
     public function index(Request $request)
     {

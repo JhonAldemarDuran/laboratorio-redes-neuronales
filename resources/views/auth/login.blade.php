@@ -1,8 +1,16 @@
 @extends('layouts.app')
 
-
-
 @section('content')
+
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{{ url('/') }}">Inicio</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Iniciar Sesión</li>
+  </ol>
+</nav>
+
+<div class="jumbotron">
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -68,4 +76,9 @@
         </div>
     </div>
 </div>
+
+
+</div>
+
+
 @endsection

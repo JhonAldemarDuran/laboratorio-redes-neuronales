@@ -30,7 +30,7 @@ class RedController extends Controller
         $input = $request->all();
         Rede::create($input);
         Session::flash('flash_message', 'planta exitosamente seleccionada!');
-        return redirect('/home');
+        return redirect('/reportes');
     }
 
      public function edit(Request $request, $id)
@@ -43,5 +43,17 @@ class RedController extends Controller
             Session::flash('flash_message',"La Red ($id) no pudo ser editado");
             return redirect()->back();
         }
+    }
+
+    public function raspberry()
+    {
+        $redes = Rede::all('id','rate_learning','itera','numero_capas');
+        return  response()->json(['redes'=>$redes]);
+    }
+
+    public function raspberryAgregar()
+    {
+        $redes = Rede::all('id','rate_learning','itera','numero_capas');
+        return  response()->json(['redes'=>$redes]);
     }
 }

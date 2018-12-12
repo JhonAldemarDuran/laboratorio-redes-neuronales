@@ -2,9 +2,19 @@
 
 
 @section('content')
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{{ url('/') }}">Inicio</a></li>
+    <li class="breadcrumb-item"><a href="{{ url('/home')}}">Zona Privada</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Lista de Usuario</li>
+  </ol>
+</nav>
 
 
-    <h1>Listado de usuarios</h1>
+<div class="jumbotron">
+    <div class="row justify-content-center">
+        <div class="col-10">
+                <h1>Listado de usuarios</h1>
     <p class="lead">Lista de todos los usuarios registrados.
     <a href="{!! url('users/create') !!}">Agregar un nuevo usuario?</a></p>
 
@@ -48,6 +58,12 @@
 	</table>
 
 @endsection
+        </div>
+
+    </div>
+
+</div>
+
 
 
 

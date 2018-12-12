@@ -1,8 +1,9 @@
+ html, body {
+            background-color: #f2f2f2;
 
-/* Basic */
-
-	body {
-		background: #ffffff;
+	}
+	.jumbotron{
+		background-color: #f2f2f2;
 	}
 
 	body, input, select, textarea {
@@ -15,7 +16,6 @@
 
 	a {
 		color: #3ac984;
-		text-decoration: underline;
 	}
 
 		a:hover {
@@ -184,4 +184,41 @@
 				display: none;
 			}
 
+@import url('https://fonts.googleapis.com/css?family=Ubuntu');
 
+footer {
+    background: black;
+    text-align: center;
+    padding: 20px 0;
+    
+}
+footer .footer-box{
+    width: 33.3333%;
+    margin: auto;
+}
+footer .footer-box p{
+    color: #fff;
+    font-size: 18px;
+}
+footer .footer-box .fa{
+    display: inline-block;
+    background-color: #fff;
+    border-radius: 50%;
+    padding: 0.5em 0.6em;
+    margin: 5px;
+    font-size: 20px;
+}
+.card{
+	box-shadow: 3px 5px lightgray;
+	
+}
+.card:hover{
+	box-shadow: 5px 7px lightgray;
+	
+}
+
+.img-jhon{
+
+	width: 100%;
+	height: 400px;
+}

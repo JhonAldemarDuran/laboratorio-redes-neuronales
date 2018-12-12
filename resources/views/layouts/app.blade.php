@@ -16,34 +16,45 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
+	<!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
+		<script src="js/jquery.min.js"></script>
+		<script src="js/skel.min.js"></script>
+		<script src="js/init.js"></script>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href=" https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://bootswatch.com/4/cerulean/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}" />    
+    
+    @yield('estilos')
+   
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+     
+    
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                
                         @guest
-                            <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
-                            <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
+                        
+  
+                                <li><a class="nav-link" href="{{ url('/viewdoc')}}">Documentación</a></li>
+								<li><a class="nav-link" href="{{ route('login') }}">Zona Privada</a></li>
+								<li><a class="nav-link" href="{{ route('login') }}">Inicia Sesión</a></li>
+								<li><a class="nav-link" href="{{ route('register') }}">Registrate</a></li>
                         @else
+                            <li><a class="nav-link" href="{{ route('users.index')}}">Usuarios</a></li>
+                            <li><a class="nav-link" href="{{ route('redes.create') }}">Crear Redes</a></li>
+                            <li><a class="nav-link" href="{{ route('reportes.index') }}">Reportes de redes</a></li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -62,19 +73,38 @@
                                 </div>
                             </li>
                         @endguest
-                    </ul>
-                </div>
-            </div>
+            </ul>
+          </div>
         </nav>
 
-        <main class="py-4">
+ 
+        <main >
             @if(Session::has('flash_message'))
                 <article class="alert alert-success">
                     {{Session::get('flash_message')}}
                 </article>
             @endif
-            @yield('content')
+            
+                
+                @yield('content')
+              
+            
+            
         </main>
     </div>
+<footer>
+  <div class="container">
+      <div class="footer-box">
+          <p> &copy; 2018 Universidad Del Quindío</p>
+      </div>
+      <div class="footer-box">
+          <a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a>          
+          <a href="https://twitter.com/?lang=es"><i class="fa fa-twitter"></i><a/>
+          <a href="https://www.instagram.com/"><i class="fa fa-instagram"></i>
+          <a href="https://twitter.com/?lang=es"><i class="fa fa-google-plus"></i>
+          <a href="https://twitter.com/?lang=es"><i class="fa fa-github"></i>
+      </div>
+  </div>
+</footer>
 </body>
 </html>
