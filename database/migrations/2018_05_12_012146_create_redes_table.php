@@ -16,7 +16,7 @@ class CreateRedesTable extends Migration
         Schema::create('redes', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->integer('tipo')->default(1); //1:supervisado;2:nosupervisado
+            $table->string('tipo')->default(1); //1:supervisado;2:nosupervisado
             $table->float('rate_learning')->nullable();
             $table->integer('itera')->nullable();
             $table->integer('numero_capas')->nullable();
