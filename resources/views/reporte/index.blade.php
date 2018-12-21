@@ -11,10 +11,16 @@
   </ol>
 </nav>
 
-<h1>Reportes</h1>
 
+<div class="jumbotron">
+    <div class="row justify-content-center">
+        <div class="col-10">
+        <h1 class="text-center">Reportes</h1>
+    
 
-	<table class="table table-bordered">
+<div class="card">
+    <table class="table table-bordered">
+    <table class="table table-bordered">
 		<tr>
 			<th>N°</th>
 			<th>Nombres</th>
@@ -49,31 +55,11 @@
 
 	</table>
 
+	</table>
+    </div>
 @endsection
+        </div>
 
+    </div>
 
-{{--@section('content')
-
-
-    <h1>Reportes</h1>
-    <p class="lead">Lista de reportes.</p>
-    <hr>
-    @foreach($list as $rede)
-        <p>{{ $rede->name }}</p>
-        <p>{{ $rede->tipo }}</p>
-        <p>{{ $rede->rate_learning }}</p>
-        <p>{{ $rede->ietra}}</p>
-        <p>{{ $rede->numero_capas}}</p>
-         <p>
-        <a href="{{ route('reportes.show', $rede->id) }}" class="btn btn-primary">Ver Red</a>
-        <a href="{{ route('redes.edit', $rede->id) }}" class="btn btn-primary">Editar Red</a>
-        {!! Form::open([
-            'method' => 'DELETE',
-            'route' => ['redes.destroy', $rede->id]
-        ]) !!}
-        {!! Form::submit('Borrar esta red?', ['class' => 'btn btn-danger']) !!}
-        {!! Form::close() !!}
-        </p>
-        <hr>
-    @endforeach
-@stop--}}
+</div>
