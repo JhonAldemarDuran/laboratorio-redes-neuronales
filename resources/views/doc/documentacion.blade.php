@@ -4,12 +4,12 @@
 <link href="{{ asset('css/menu-lateral.css') }}" rel="stylesheet">
 @endsection
 @section('content')
-<div class="jumbotron">
+<div class="jumbotron ">
 	<div class="row">
 
 
 		<nav  class="col-3">
-		<div class="menu-content">
+		<div class="menu-content ">
 			<ul class="accordion">
 					<li >
 						<a class="center-li">Menú</a>
@@ -51,8 +51,8 @@
 
 			</ul>
 		</nav>
-			<div id="teoria" class="col-9">
-				<div id="A">
+			<div id="teoria" class="col-9 ">
+				<div id="A ">
 					<div id="B">
 							<h3 id="rna">Redes Neuronales Artificiales</h3>
 							<h3 id="que_es_rna">Qué es una Red Neuronal Artificial</h3>
