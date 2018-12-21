@@ -55,13 +55,19 @@ class RedController extends Controller
     public function raspberryAgregar(Request $request)
     {
         
-        if($request->imagen){
-            $image = base64_decode($request->imagen);
-        }
+        //if($request->imagen){
+          //  $image = base64_decode($request->imagen);
+        //}
 
-        error_log( $image );
+        //error_log( $image );
 
-        
+        $image = $request->imagen;
+        $input['imagename'] = time().'.'.$image->getClientOriginalExtension();
+        $destinationPath = public_path('/images/plantas');
+        $image->move($destinationPath, $input['imagename']);
+               
         return  response('ok',200);
     }
 }
+
+
