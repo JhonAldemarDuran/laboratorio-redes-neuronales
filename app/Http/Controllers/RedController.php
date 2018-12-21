@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Session;
 use App\Rede;
+use Log;
 
 class RedController extends Controller
 {
@@ -53,10 +54,14 @@ class RedController extends Controller
 
     public function raspberryAgregar(Request $request)
     {
-        $respuesta = $request->all();
-        Log::error($respuesta);
+        
+        if($request->imagen){
+            $image = base64_decode($request->imagen);
+        }
+
+        error_log( $image );
 
         
-        return  response()->json(['algo'=> $respuesta]);
+        return  response('ok',200);
     }
 }
