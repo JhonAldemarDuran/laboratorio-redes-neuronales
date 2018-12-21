@@ -18,4 +18,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/redes', 'RedController@raspberry');
-Route::post('/redes/agregar', 'ReporteController@raspberryAgregar');
+Route::post('/redes/agregar', 'RedController@raspberryAgregar');

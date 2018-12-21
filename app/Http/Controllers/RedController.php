@@ -51,9 +51,12 @@ class RedController extends Controller
         return  response()->json(['redes'=>$redes]);
     }
 
-    public function raspberryAgregar()
+    public function raspberryAgregar(Request $request)
     {
-        $redes = Rede::all('id','rate_learning','itera','numero_capas');
-        return  response()->json(['redes'=>$redes]);
+        $respuesta = $request->all();
+        Log::error($respuesta);
+
+        
+        return  response()->json(['algo'=> $respuesta]);
     }
 }

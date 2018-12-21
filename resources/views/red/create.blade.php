@@ -42,7 +42,7 @@
 
                     <div class="form-group">
 
-                        {!!Form::label('tipo','Tipo',['class'=>'control-label']) !!}
+                        {!!Form::label('tipo','Función de transferencia (numerador/dnominador)',['class'=>'control-label']) !!}
                         {!!Form::text('tipo',null,['class'=>'form-control']) !!}
 
                     </div>
