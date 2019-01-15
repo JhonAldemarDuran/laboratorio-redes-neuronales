@@ -1,2 +1,2 @@
-# laboratorio-redes-neuronales
-We: http://laboratorioredesneuronales.herokuapp.com/
+# laboratorio Redes Neuronales
+Web: http://laboratorioredesneuronales.herokuapp.com/
