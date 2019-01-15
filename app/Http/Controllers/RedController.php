@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Session;
 use App\Rede;
+use App\Imagen;
 use Log;
 
 class RedController extends Controller
@@ -25,7 +26,10 @@ class RedController extends Controller
             'tipo' => 'required',
             'rate_learning'=>'required',
             'itera'=>'required',
-            'numero_capas'=>'required'
+            'numero_capas'=>'required',
+            'tiempo_establecimiento'=>'required',
+            'tiempo_muestreo'=>'required',
+            'referencia'=>'required'
 
         ]);
         $input = $request->all();
@@ -48,7 +52,7 @@ class RedController extends Controller
 
     public function raspberry()
     {
-        $redes = Rede::all('id','rate_learning','itera','numero_capas');
+        $redes = Rede::all('id','rate_learning','itera','numero_capas','tiempo_establecimiento','tiempo_muestreo','referencia');
         return  response()->json(['redes'=>$redes]);
     }
 
@@ -65,8 +69,13 @@ class RedController extends Controller
         $input['imagename'] = time().'.'.$image->getClientOriginalExtension();
         $destinationPath = public_path('/images/plantas');
         $image->move($destinationPath, $input['imagename']);
+
+        $img = new Imagen;
+        $img->timestamps = false;
+        $img->name = $input['imagename'];
+        $img->save();
                
-        return  response('ok',200);
+        return  response($img);
     }
 }
 

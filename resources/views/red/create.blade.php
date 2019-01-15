@@ -68,6 +68,29 @@
 
 
                     </div>
+
+                    <div class="form-group">
+
+                        {!!Form::label('tiempo_establecimiento','Tiempo de establecimiento',['class'=>'control-label']) !!}
+                        {!!Form::text('tiempo_establecimiento',null,['class'=>'form-control']) !!}
+
+
+                    </div>
+
+                    <div class="form-group">
+
+                        {!!Form::label('tiempo_muestreo','Tiempo de muestro',['class'=>'control-label']) !!}
+                        {!!Form::text('tiempo_muestreo',null,['class'=>'form-control']) !!}
+
+
+                    </div>
+
+                    <div class="form-group">
+
+                        {!!Form::label('referencia','Referencia',['class'=>'control-label']) !!}
+                        {!!Form::text('referencia',null,['class'=>'form-control']) !!}
+
+                    </div>
                 {!! Form::submit('Crear red', ['class' => 'btn btn-outline-primary']) !!}
                 {!! Form::close() !!}
 

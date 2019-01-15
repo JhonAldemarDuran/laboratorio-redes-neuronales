@@ -20,8 +20,13 @@ class CreateRedesTable extends Migration
             $table->float('rate_learning')->nullable();
             $table->integer('itera')->nullable();
             $table->integer('numero_capas')->nullable();
+            $table->integer('tiempo_establecimiento')->nullable();
+            $table->integer('tiempo_muestreo')->nullable();
+            $table->integer('referencia')->nullable();
             $table->integer('planta_id')->unsigned()->nullable();
             $table->foreign('planta_id')->references('id')->on('plantas');
+            $table->integer('user_id')->unsigned()->nullable();
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
