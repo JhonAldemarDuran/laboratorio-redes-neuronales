@@ -20,7 +20,7 @@ class CreateReportesTable extends Migration
             $table->integer('itera');
             $table->float('rate_learning');
             $table->integer('rede_id')->unsigned()->nullable();
-            $table->foreign('rede_id')->references('id')->on('redes');
+            $table->foreign('rede_id')->references('id')->on('redes')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -33,7 +33,6 @@ class CreateReportesTable extends Migration
     public function down()
     {
         Schema::table('reportes',function(Blueprint $table) {
-            $table->dropForeign(['rede_id']);
             Schema::dropIfExists('reportes');
         });
         
