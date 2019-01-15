@@ -29,9 +29,9 @@ class User extends Authenticatable
 
      /**
      * Get the redes from one user.
-     */
+    
     public function redes()
     {
         return $this->hasMany('App\CommeRedent');
-    }
+    } */
 }
