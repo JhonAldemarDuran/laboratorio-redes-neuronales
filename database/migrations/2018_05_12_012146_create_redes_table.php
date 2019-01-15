@@ -38,9 +38,10 @@ class CreateRedesTable extends Migration
      */
     public function down()
     {
-        Schema::table('plantas',function(Blueprint $table) {
+        Schema::table('redes',function(Blueprint $table) {
             $table->dropForeign(['planta_id']);
+            Schema::dropIfExists('redes');
         });
-        Schema::dropIfExists('redes');
+        
     }
 }
