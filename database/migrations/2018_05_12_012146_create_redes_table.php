@@ -24,9 +24,9 @@ class CreateRedesTable extends Migration
             $table->integer('tiempo_muestreo')->nullable();
             $table->integer('referencia')->nullable();
             $table->integer('planta_id')->unsigned()->nullable();
-            $table->foreign('planta_id')->references('id')->on('plantas');
+            $table->foreign('planta_id')->references('id')->on('plantas')->onDelete('cascade');
             $table->integer('user_id')->unsigned()->nullable();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -38,8 +38,7 @@ class CreateRedesTable extends Migration
      */
     public function down()
     {
-        Schema::table('redes',function(Blueprint $table) {
-            $table->dropForeign(['planta_id']);
+        Schema::table('redes',function(Blueprint $table) {           
             Schema::dropIfExists('redes');
         });
         
