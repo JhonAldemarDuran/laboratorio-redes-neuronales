@@ -33,5 +33,5 @@ class User extends Authenticatable
     public function redes()
     {
         return $this->hasMany('App\CommeRedent');
-    
+    }
 }
