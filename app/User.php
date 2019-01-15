@@ -27,12 +27,5 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-     /**
-     * Get the redes from one user.
     
-    public function redes()
-    {
-        return $this->hasMany('App\CommeRedent');
-    } 
-    */
 }
