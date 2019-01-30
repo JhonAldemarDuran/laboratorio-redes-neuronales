@@ -13,9 +13,12 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::post('/login_api','ApiLogin@login');
+
+Route::prefix('user/{id}/')->group(function () {
+    Route::get('redes', 'RedController@raspberry');
+    Route::post('redes/agregar', 'RedController@raspberryAgregar');
 });
 
-Route::get('/redes', 'RedController@raspberry');
-Route::post('/redes/agregar', 'RedController@raspberryAgregar');
+
+
