@@ -11,7 +11,7 @@ class PlantaController extends Controller
 {
         public function index(Request $request)
     {
-        $imagenes = Imagen::all();
+        $imagenes = Auth::user()->imagens();
         return view('planta.index', ['imagens' => $imagenes]);
     }
 }
