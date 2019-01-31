@@ -57,7 +57,7 @@ class RedController extends Controller
         return  response()->json(['redes'=>$redes]);
     }
 
-    public function raspberryAgregar(User $user, Request $request)
+    public function raspberryAgregar(Request $request, User $user)
     {
         
         //if($request->imagen){
