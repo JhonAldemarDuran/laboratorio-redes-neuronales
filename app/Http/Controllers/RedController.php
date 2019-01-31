@@ -7,6 +7,7 @@ use Session;
 use App\Rede;
 use App\Imagen;
 use Log;
+use App\User;
 
 class RedController extends Controller
 {
@@ -56,7 +57,7 @@ class RedController extends Controller
         return  response()->json(['redes'=>$redes]);
     }
 
-    public function raspberryAgregar(Request $request)
+    public function raspberryAgregar(User $user Request $request)
     {
         
         //if($request->imagen){
@@ -73,10 +74,15 @@ class RedController extends Controller
         $img = new Imagen;
         $img->timestamps = false;
         $img->name = $input['imagename'];
+        $img->user_id = $user->id;
         $img->save();
+        
+        
                
         return  response($img);
     }
+    
+    
 }
 
 
