@@ -57,6 +57,7 @@ class RedController extends Controller
         return  response()->json(['redes'=>$redes]);
     }
 
+
     public function raspberryAgregar(Request $request, User $user)
     {
         
