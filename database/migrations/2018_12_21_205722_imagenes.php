@@ -16,11 +16,12 @@ class Imagenes extends Migration
         Schema::create('imagens', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->integer('user_id')->unsigned()->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
     
-    $table->integer('user_id')->unsigned()->nullable();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            
 
     /**
      * Reverse the migrations.
