@@ -72,7 +72,28 @@ class RedController extends Controller
     }
 
 
-    public function raspberryAgregar(Request $request,User $user )
+    
+    public function raspberryAgregar(Request $request, $id)
+    {       
+        
+        $image = $request->imagen;
+        $input['imagename'] = time().'.'.$image->getClientOriginalExtension();
+        $destinationPath = public_path('/images/plantas');
+        $image->move($destinationPath, $input['imagename']);
+
+        $img = new Imagen;
+        $img->timestamps = false;
+        $img->name = $input['imagename'];
+        $img->user_id = $id;
+        $img->save();
+        
+        
+               
+        return  response($img);
+    }
+    
+    
+   /* public function raspberryAgregar(Request $request,User $user )
    
     {
         
@@ -97,7 +118,7 @@ class RedController extends Controller
                
         return  response($img);
     }
-    
+    */
     
 }
 
