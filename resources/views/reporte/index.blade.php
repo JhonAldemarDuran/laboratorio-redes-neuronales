@@ -24,7 +24,7 @@
 		<tr>
 			<th>N°</th>
 			<th>Nombres</th>
-			<th>Tipo</th>
+			<th>Delta</th>
 			<th>Tasa de aprendizaje</th>
 			<th>Iteraciones</th>
 			<th>Número de capas</th>
@@ -38,7 +38,7 @@
 				<tr>
 					<td>{{ $rede->id }}</td>
 					<td>{{ $rede->name }}</td>
-					<td>{{ $rede->tipo}}</td>
+					<td>{{ $rede->delta}}</td>
 					<td>{{ $rede->rate_learning}}</td>
 					<td>{{ $rede->itera}}</td>
                     <td>{{ $rede->numero_capas}}</td>

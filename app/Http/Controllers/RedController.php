@@ -24,13 +24,27 @@ class RedController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
-            'tipo' => 'required',
+            'delta' => 'required',
             'rate_learning'=>'required',
             'itera'=>'required',
             'numero_capas'=>'required',
+            'numero_neu'=>'required',
             'tiempo_establecimiento'=>'required',
             'tiempo_muestreo'=>'required',
-            'referencia'=>'required'
+            'instancias_adq'=>'required',
+            'instancias_c'=>'required',
+            'a11'=>'required',
+            'a12'=>'required',
+            'a21'=>'required',
+            'a22'=>'required',
+            'b11'=>'required',
+            'b21'=>'required',
+            'b22'=>'required',
+            'c11'=>'required',
+            'c12'=>'required',
+            'd11'=>'required'
+            
+            
 
         ]);
         $input = $request->all();
@@ -53,11 +67,13 @@ class RedController extends Controller
 
     public function raspberry()
     {
-        $redes = Rede::all('id','rate_learning','itera','numero_capas','tiempo_establecimiento','tiempo_muestreo','referencia');
+        $redes = Rede::all('id','delta','rate_learning','itera','numero_capas','numero_neu','tiempo_establecimiento','tiempo_muestreo','instancias_adq','instancias_c','a11','a12','a21','a22','b11','b21','b22','c11','c12','d11');
         return  response()->json(['redes'=>$redes]);
     }
 
-    public function raspberryAgregar(User $user, Request $request)
+
+    public function raspberryAgregar(Request $request,User $user )
+   
     {
         
         //if($request->imagen){
@@ -74,7 +90,7 @@ class RedController extends Controller
         $img = new Imagen;
         $img->timestamps = false;
         $img->name = $input['imagename'];
-        $img->user_id = $user->id;
+        $img->user_id = 2;
         $img->save();
         
         

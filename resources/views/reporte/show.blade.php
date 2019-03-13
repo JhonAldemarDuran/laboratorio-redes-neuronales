@@ -26,11 +26,11 @@
                
             </div>
             <div class="card-body">
-            <table class="table table-striped table-hover">
+            <table class="table ">
 
                 <tr>
-                    <td style="width: 200px;">tipo</td>
-                    <td>{{ $data->tipo }}</td>
+                    <td style="width: 200px;">Delta</td>
+                    <td>{{ $data->delta }}</td>
                 </tr>
                 <tr>
                     <td>Tasa de Aprendizaje</td>
@@ -45,16 +45,75 @@
                     <td>Número de capas</td>
                     <td>{{ $data->numero_capas }}</td>
                 </tr>
-
-
+                
+                  <tr>
+                    <td>Número de Neuronas</td>
+                    <td>{{ $data->numero_neu }}</td>
+                </tr>
+                
+                  <tr>
+                    <td>Tiempo de Establecimiento</td>
+                    <td>{{ $data->tiempo_establecimiento }}</td>
+                </tr>
+                
+                 <tr>
+                    <td>Tiempo de Muestreo</td>
+                    <td>{{ $data->tiempo_muestreo}}</td>
+                </tr>
+                     
+                 <tr>
+                    <td>Instancias de Adquisición</td>
+                    <td>{{ $data->instancias_adq}}</td>
+                     
+                </tr>
+                
+                 <tr>
+                    <td>Instancias de Control</td>
+                    <td>{{ $data->instancias_c}}</td>
+                </tr>
+                
+                 <tr>
+                    <td>A11</td>
+                    <td>{{ $data->a11}}</td>
+                </tr>
+                
                 <tr>
-                    <td>Created At</td>
-                    <td>{{ $data->created_at }}</td>
+                    <td>A12</td>
+                    <td>{{ $data->a12}}</td>
                 </tr>
                 <tr>
-                    <td>Updated At</td>
-                    <td>{{ $data->updated_at }}</td>
+                    <td>A21</td>
+                    <td>{{ $data->a21}}</td>
                 </tr>
+                <tr>
+                    <td>A22</td>
+                    <td>{{ $data->a22}}</td>
+                </tr>
+                <tr>
+                    <td>B11</td>
+                    <td>{{ $data->b11}}</td>
+                </tr>
+                                <tr>
+                    <td>B21</td>
+                    <td>{{ $data->b21}}</td>
+                </tr>
+                                <tr>
+                    <td>B22</td>
+                    <td>{{ $data->b22}}</td>
+                </tr>
+                                <tr>
+                    <td>C11</td>
+                    <td>{{ $data->c11}}</td>
+                </tr>
+                                <tr>
+                    <td>C12</td>
+                    <td>{{ $data->c12}}</td>
+                </tr>
+                                <tr>
+                    <td>D11</td>
+                    <td>{{ $data->d11}}</td>
+                </tr>
+                
                 </table>
 
                 <hr>

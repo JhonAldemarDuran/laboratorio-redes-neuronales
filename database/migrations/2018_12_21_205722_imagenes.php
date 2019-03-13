@@ -21,7 +21,7 @@ class Imagenes extends Migration
         });
     }
     
-            
+
 
     /**
      * Reverse the migrations.
