@@ -9,7 +9,7 @@
             
         
         <div class="col-4">
-                <img class="img-fluid" src="{{asset('images/plantas/'.$image->name)}}" alt="plantas" style="margin-bottom:2em;">
+                <img class="img-fluid" src="{{url('images/plantas/'.$image->name)}}" alt="plantas" style="margin-bottom:2em;">
         </div>
         @endforeach
         
