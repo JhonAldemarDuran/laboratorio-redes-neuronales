@@ -1,92 +1,172 @@
 <?php
+
 namespace App\Http\Controllers;
+
+use App\Http\Controllers\Controller;
+use Hash;
 use Illuminate\Http\Request;
 use App\User;
-use Session;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
+use App\Net;
+use App\Report;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
-    //
-    public function create(Request $request)
-    {
-        return view('user.create');
-    }
-    public function store(Request $request)
-    {
-        $this->validate($request, [
-            'name' => 'required | string  | max:66',
-            'email' => 'required | email| unique:users',
-            'Direccion' => 'required | string | max:66',
-            'password' => 'required | string | min:8 | max:64',
-        ]);
-        $input = $request->all();
-        User::create($input);
-        Session::flash('flash_message', 'Usuario exitosamente agregado!');
-        return redirect('/users');
-    }
-    public function index(Request $request)
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
     {
         $users = User::all();
-        return view('user.index', ['list' => $users]);
+        return view('users.index', compact('users'));
     }
-    public function show(Request $request,$id)
-    {
-        try{
-            $user = User::findOrFail($id);
-            return view('user.show',['data'=>$user]);
-        }
-        catch(ModelNotFoundException $e)
-        {
-            Session::flash('flash_message',"El usuario ($id) no se ha encontrado");
-            return redirect()->back();
-        }
-    }
-    public function edit(Request $request, $id)
-    {
-        try{
-            $user=User::findOrFail($id);
-            return view('user.edit',['data'=>$user]);
-        }catch(ModelNotFoundException $e)
-        {
-            Session::flash('flash_message',"El usuario ($id) no pudo ser editado");
-            return redirect()->back();
-        }
-    }
-    public function update(Request $request,$id)
-    {
-        try{
-            $user=User::findOrFail($id);
-            $this->validate($request, [
-                'name' => 'required | string',
-                'email' => 'required | email',
-                'Direccion' => 'required',
-                'password' => 'required | string | min:8 | max:64',
-        ]);
-        $input = $request->all();
-        $user->fill($input)->save();
-        Session::flash('flash_message', 'Usuario exitosamente editado!');
-        return redirect('/home');
-        }catch(ModelNotFoundExcetion $e)
-        {
-            Session::flash('flash_message','El usuario ($id) no pudo ser editado');
-            return redirect()->back();
-        }
-    }
-    public function destroy(Request $request, $id)
-    {
-        try
-        {
-            $user = User::findOrFail($id);
-            $user->delete();
-            Session::flash('flash_message', 'Usuario correctamente borrado!');
-            return redirect('/home');
-        }
-        catch(ModelNotFoundException $e)
-        {
-            Session::flash('flash_message', "El usuario ($id) no fue borrado!");
-            return redirect()->back();
-        }
-    }
-}
 
+        /**
+     * Display the specified resource.
+     *
+     * @param    \Illuminate\Http\Request  $request
+     * @param    int  $id
+     * @return  \Illuminate\Http\Response
+     */
+    public function show( User $users)
+    {
+        $nets = $users->nets;
+        
+        return view('users.show',compact('users','nets'));
+    }
+
+    public function show_net( $users, Net $net)
+    {
+        $reports = $net->reports;
+        
+        return view('users.net_show',compact('users','net','reports'));
+    }
+
+
+    public function show_report( $users, $net, Report $report)
+    {
+        $images = $report->images;
+        
+        return view('users.report_show',compact('users','net','report','images'));
+    }
+    
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        $roles = Role::all();
+        return view('users.create', compact('roles'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $this->store_validate($request);
+        $user = new User();
+        $user->email = $request->email;
+        $user->name = $request->name;
+        $user->password = Hash::make($request->password);
+        $user->save();
+        $user->assignRole($request->role);
+
+        return redirect()->route('users.index');
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param int $id
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(User $users)
+    {
+        $user = $users;
+        $roles = Role::all();
+
+        return view('users.edit', compact('user', 'roles'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, User $users)
+    {
+        $this->update_validate($request);
+        $users->email = $request->email;
+        $users->name = $request->name;
+        if ($users->password!='') {
+            $users->password = Hash::make($request->password);
+        } 
+        $users->save();
+        if ($request->role!=$users->roles->first()->namee) {
+            $users->assignRole($request->role);
+        }
+        
+
+        return redirect()->route('users.index');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param int $id
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy( User $users)
+    {
+        
+        $users->delete();
+        return route('users.index');
+    }
+
+    public function store_validate($request){
+        $messages = [
+            'name.required' => 'El Nombre es Requerido',     
+            'name.max' => 'El Nombre debe contener maximo 66 caracteres',
+            'email.required' => 'El Email es Requerido',               
+            'email.unique' => 'El correo ya esta registrado',     
+            'password.required' => 'La Contraseña es Requerida',
+            'password.min' => 'Como Mínimo 6 caracteres',
+
+        ];
+        $request->validate([
+            'name' => 'required | string  | max:66',
+            'email' => 'required | email| unique:users',
+            'password' => 'required | string | min:6 | max:64 ',
+        ], $messages);
+    }
+
+    public function update_validate($request){
+        $messages = [
+            'name.required' => 'El Nombre es Requerido',     
+            'name.max' => 'El Nombre debe contener maximo 66 caracteres',
+            'email.required' => 'El Email es Requerido',  
+            'password.min' => 'Como Mínimo 6 caracteres',
+
+        ];
+        $request->validate([
+            'name' => 'required | string  | max:66',
+            'email' => 'required | email',
+            'password' => 'nullable | string | min:6 | max:64 ',
+        ], $messages);
+    }
+
+}

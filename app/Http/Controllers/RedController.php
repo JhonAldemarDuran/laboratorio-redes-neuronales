@@ -42,10 +42,7 @@ class RedController extends Controller
             'b22'=>'required',
             'c11'=>'required',
             'c12'=>'required',
-            'd11'=>'required'
-            
-            
-
+            'd11'=>'required'   
         ]);
         $input = $request->all();
         Rede::create($input);

@@ -28,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -48,11 +48,22 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
-        ]);
+
+        $messages = [
+            'name.required' => 'El Nombre es Requerido',     
+            'name.max' => 'El Nombre debe contener maximo 66 caracteres',
+            'email.required' => 'El Email es Requerido',     
+            'email.unique' => 'El correo ya esta registrado',     
+            'password.required' => 'La Contraseña es Requerida',
+            'password.min' => 'Como Mínimo 6 caracteres',
+            'password.confirmed' => 'Las contraseñas deben ser iguales',
+
+        ];
+        return Validator::make($data,[
+            'name' => 'required | string  | max:66',
+            'email' => 'required | email| unique:users',
+            'password' => 'required | string | min:6 | max:64 | confirmed',
+        ], $messages);
     }
 
     /**
@@ -63,10 +74,14 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+        $user = new User();
+
+        $user->name = $data['name'];
+        $user->email = $data['email'];
+        $user->password = Hash::make($data['password']);
+        $user->save(); 
+        $user->assignRole('usuario');
+        return $user;
+
     }
 }

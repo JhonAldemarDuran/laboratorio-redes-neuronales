@@ -13,12 +13,10 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::post('/login_api','ApiLogin@login');
-
-Route::prefix('user/{id}/')->group(function () {
-    Route::get('redes', 'RedController@raspberry');
-    Route::post('redes/agregar', 'RedController@raspberryAgregar');
+Route::middleware('auth:api')->get('/user', function (Request $request) {
+    return $request->user();
 });
 
+Route::get('raspberry/nets/', '\App\Http\Controllers\Api\ReportController@index' );
 
-
+Route::post('raspberry/report/store/{net}', '\App\Http\Controllers\Api\ImageController@store');

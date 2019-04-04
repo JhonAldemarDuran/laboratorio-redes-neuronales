@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Validation\ValidationException;
 
 class LoginController extends Controller
 {
@@ -25,7 +26,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -36,4 +37,16 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    protected function sendFailedLoginResponse($request)
+     {
+          throw ValidationException::withMessages([
+               'email.required' => ['El correo es requerido'],
+               'email.email' => ['El correo no es valido'],
+               'password.required' => ['La contraseña es requerida'],
+               'password.*' => ['La contraseña es Inconrrecta'],
+               'email' => ['El Correo o la Contraseña son Incorrectos'],
+               
+          ]);
+     }
 }
