@@ -17,6 +17,7 @@
         "pusher/pusher-php-server": "~3.0",
         "spatie/laravel-permission": "^1",
         "vinkla/pusher": "^4.2",
+        "fzaninotto/faker": "^1.4",
         "laravelcollective/html":"^5.8.0"
     },
     "require-dev": {
